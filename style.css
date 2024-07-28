@@ -823,16 +823,83 @@ footer{
   filter: invert(100%) brightness(100%) contrast(100%);
 }
 
+.menu_trigger {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 56px;
+  height: 56px;
+  background-color: #424a4d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.icon-container {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.menu_trigger:hover{
+  filter: brightness(100%);
+}
+
+.menu_trigger .open-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu_trigger .close-icon {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu_trigger.active .open-icon {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.menu_trigger.active .close-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .menu_trigger_circles {
   position: fixed;
   bottom: 110px; 
   right: 40px;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px; 
   z-index: 998;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* Prevent interaction when hidden */
 }
+
+.menu_trigger_circles.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto; /* Allow interaction when visible */
+}
+
 
 .menu_trigger.active + .menu_trigger_circles {
   display: flex;

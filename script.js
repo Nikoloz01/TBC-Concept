@@ -130,6 +130,34 @@ document.addEventListener('DOMContentLoaded', function() {
     handleResize(); // Initial check
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const menuTrigger = document.querySelector('.menu_trigger');
+    const menuTriggerCircles = document.querySelector('.menu_trigger_circles');
+    const closeIcon = menuTrigger.querySelector('.close-icon');
+    const openIcon = menuTrigger.querySelector('.open-icon');
+
+    menuTrigger.addEventListener('click', function () {
+        menuTrigger.classList.toggle('active');
+        menuTriggerCircles.classList.toggle('active');
+
+        if (menuTrigger.classList.contains('active')) {
+            openIcon.style.opacity = '0';
+            openIcon.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                closeIcon.style.opacity = '1';
+                closeIcon.style.transform = 'scale(1)';
+            }, 300); // Ensure the transition duration matches the CSS transition
+        } else {
+            closeIcon.style.opacity = '0';
+            closeIcon.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                openIcon.style.opacity = '1';
+                openIcon.style.transform = 'scale(1)';
+            }, 300); // Ensure the transition duration matches the CSS transition
+        }
+    });
+});
+
 
 
 
