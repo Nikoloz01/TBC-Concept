@@ -158,6 +158,76 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// script.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cookiePopup = document.getElementById('cookie-popup');
+    const acceptCookiesButton = document.getElementById('accept-cookies');
+  
+    // Show the cookie popup if the user hasn't accepted cookies yet
+    if (!localStorage.getItem('cookiesAccepted')) {
+      cookiePopup.classList.add('show');
+    }
+  
+    // Handle the accept cookies button click
+    acceptCookiesButton.addEventListener('click', function () {
+      localStorage.setItem('cookiesAccepted', 'true');
+      cookiePopup.classList.remove('show');
+    });
+  });
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuIcon = document.querySelector('.menu-icon');
+    const overlay = document.getElementById('overlay');
+    const dropdownTitles = document.querySelectorAll('.dropdown-title');
+
+    menuIcon.addEventListener('click', function () {
+        if (overlay.classList.contains('show')) {
+            overlay.classList.remove('show');
+            overlay.classList.add('hide');
+            setTimeout(() => {
+                overlay.classList.remove('hide');
+                overlay.style.display = 'none';
+            }, 300); // Match this duration with the CSS transition duration
+        } else {
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                overlay.classList.add('show');
+            }, 10); // Slight delay to ensure display property is applied
+        }
+    });
+
+    dropdownTitles.forEach(title => {
+        title.addEventListener('click', function () {
+            const dropdown = this.parentElement;
+            const isOpen = dropdown.classList.contains('open');
+
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+
+            // Toggle the clicked dropdown
+            if (!isOpen) {
+                dropdown.classList.add('open');
+            }
+        });
+    });
+
+    // Close overlay when window is resized to greater than 991px
+    window.addEventListener('resize', function () {
+        if (window.innerWidth >= 992) {
+            overlay.classList.remove('show');
+            overlay.classList.add('hide');
+            setTimeout(() => {
+                overlay.classList.remove('hide');
+                overlay.style.display = 'none';
+            }, 300); // Match this duration with the CSS transition duration
+        }
+    });
+});
+  
+
+  
+
 
 
 
