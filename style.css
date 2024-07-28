@@ -987,17 +987,17 @@ footer{
 }
 
 .circle{
+  position: relative;
   width: 56px;
-    height: 56px;
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #eef1f1;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-    transition: background-color .25s ease-in-out;
-    display: flex;
+  height: 56px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #eef1f1;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  display: flex;
 }
 
 .circle:hover{
@@ -1018,6 +1018,40 @@ footer{
 }
 
 .circle_hover:hover .callCenter_icon{
+  display: none;
+}
+
+.circle:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 10px;
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+}
+
+.circle img {
+  z-index: 1;
+}
+
+.circle_hover:hover .callCenter_icon-hover {
+  display: block;
+}
+
+.circle_hover:hover .callCenter_icon {
   display: none;
 }
 
@@ -1866,8 +1900,8 @@ body, main {
       padding: 0;
     }
     .no_border_header{
-      padding-left: 0;
-      margin-top: 0;
+      padding-left: 0 !important;
+      margin-top: 0 !important;
     }
     .footer_dropdown_col_header > div:last-child>div {
       margin-bottom: 0;
@@ -2131,4 +2165,6 @@ body, main {
     padding: 32px 15px;
   }
 }
+
+
 

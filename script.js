@@ -8,6 +8,7 @@ const swiper = new Swiper('.swiper-container', {
     scrollbar: {
         el: '.swiper-scrollbar',
         hide: false,
+        dragSize: 300
     },
     breakpoints: {
         0: {
