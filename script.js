@@ -12,13 +12,13 @@ const swiper = new Swiper('.swiper-container', {
     },
     breakpoints: {
         0: {
-            slidesPerView: 1.5, // For screens 600px and below
+            slidesPerView: 1.5,
         },
         600: {
-            slidesPerView: 2.23 // For screens between 600px and 992px
+            slidesPerView: 2.23
         },
         992: {
-            slidesPerView: 3, // For screens 992px and above
+            slidesPerView: 3,
         }
     }
 });
@@ -26,23 +26,18 @@ const swiper = new Swiper('.swiper-container', {
 
 document.addEventListener('DOMContentLoaded', function () {
     const selectElement = document.querySelector('.custom-dropdown');
-
-    // Load the saved selected value from local storage
     const savedValue = localStorage.getItem('selectedLanguage');
     if (savedValue) {
         selectElement.value = savedValue;
     }
 
-    // Update the options based on the saved value
     updateOptions(selectElement);
 
     selectElement.addEventListener('change', function () {
         const selectedValue = selectElement.value;
 
-        // Save the selected value to local storage
         localStorage.setItem('selectedLanguage', selectedValue);
 
-        // Update the options based on the new selected value
         updateOptions(selectElement);
     });
 
@@ -71,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedOption = dropdown.querySelector(`.dropdown-option[data-value="${selectedValue}"]`);
         if (selectedOption) {
             selected.querySelector('span').textContent = selectedOption.textContent;
-            // Hide the selected option and show the other one
             options.querySelectorAll('.dropdown-option').forEach(option => {
                 if (option.getAttribute('data-value') === selectedValue) {
                     option.style.display = 'none';
@@ -81,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     } else {
-        // Set initial value if none is stored
         const initialValue = options.querySelector('.dropdown-option').getAttribute('data-value');
         localStorage.setItem('selectedLanguage', initialValue);
         options.querySelector('.dropdown-option').style.display = 'none';
@@ -95,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
             selected.querySelector('span').textContent = text;
             localStorage.setItem('selectedLanguage', value);
 
-            // Hide the selected option and show the other one
             options.querySelectorAll('.dropdown-option').forEach(option => {
                 if (option.getAttribute('data-value') === value) {
                     option.style.display = 'none';
@@ -128,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
+    handleResize();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -147,30 +139,26 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 closeIcon.style.opacity = '1';
                 closeIcon.style.transform = 'scale(1)';
-            }, 300); // Ensure the transition duration matches the CSS transition
+            }, 300);
         } else {
             closeIcon.style.opacity = '0';
             closeIcon.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 openIcon.style.opacity = '1';
                 openIcon.style.transform = 'scale(1)';
-            }, 300); // Ensure the transition duration matches the CSS transition
+            }, 300);
         }
     });
 });
 
-// script.js
 
 document.addEventListener('DOMContentLoaded', function () {
     const cookiePopup = document.getElementById('cookie-popup');
     const acceptCookiesButton = document.getElementById('accept-cookies');
   
-    // Show the cookie popup if the user hasn't accepted cookies yet
     if (!localStorage.getItem('cookiesAccepted')) {
       cookiePopup.classList.add('show');
     }
-  
-    // Handle the accept cookies button click
     acceptCookiesButton.addEventListener('click', function () {
       localStorage.setItem('cookiesAccepted', 'true');
       cookiePopup.classList.remove('show');
@@ -189,12 +177,12 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 overlay.classList.remove('hide');
                 overlay.style.display = 'none';
-            }, 300); // Match this duration with the CSS transition duration
+            }, 300);
         } else {
             overlay.style.display = 'block';
             setTimeout(() => {
                 overlay.classList.add('show');
-            }, 10); // Slight delay to ensure display property is applied
+            }, 10);
         }
     });
 
@@ -203,17 +191,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const dropdown = this.parentElement;
             const isOpen = dropdown.classList.contains('open');
 
-            // Close all other dropdowns
             document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
 
-            // Toggle the clicked dropdown
             if (!isOpen) {
                 dropdown.classList.add('open');
             }
         });
     });
 
-    // Close overlay when window is resized to greater than 991px
     window.addEventListener('resize', function () {
         if (window.innerWidth >= 992) {
             overlay.classList.remove('show');
@@ -221,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 overlay.classList.remove('hide');
                 overlay.style.display = 'none';
-            }, 300); // Match this duration with the CSS transition duration
+            }, 300);
         }
     });
 });
